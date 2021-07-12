@@ -12,16 +12,20 @@ i think i do not understand about JS as i think
 
 ## Things worth to review:
 
-| No. | Content                                       |
-| --- | --------------------------------------------- |
-|     |                                               |
-| 1   | [Execution Context](#execution-context)       |
-| 3   | [Variable Environment](#variable-environment) |
-| 4   | [Lexical Environment](#lexical-environment)   |
-| 5   | [The Scope Chain](#the-scope-chain)           |
-| 6   | [Asynchronous](#asynchronous)                 |
-| 6   | [Execution Context](#execution-context)       |
-| 6   | [Execution Context](#execution-context)       |
+| No. | Content                                         |
+| --- | ----------------------------------------------- |
+|     |                                                 |
+| 1   | [Execution Context](#execution-context)         |
+| 3   | [Variable Environment](#variable-environment)   |
+| 4   | [Lexical Environment](#lexical-environment)     |
+| 5   | [The Scope Chain](#the-scope-chain)             |
+| 6   | [Asynchronous](#asynchronous)                   |
+| 6   | [Operators](#operators)                         |
+| 6   | [Comparison Operators](#comparison-operators)   |
+| 6   | [Existence and Boolean](#existence-and-boolean) |
+| 6   | [Coercion](#coercion)                           |
+| 6   | [Coercion](#coercion)                           |
+| 6   | [Coercion](#coercion)                           |
 
 ---
 
@@ -61,8 +65,8 @@ there are lot of lexical environment. Which one is currently running is managed 
 
     - Before your code execute line by line =>
     - The JS engine will scan the code and Setup memory space for variables and function - to prepare for execution phrase
-    - All the variable and function will be setup a placeholder. Entire function will be place in memory.
-    - But variable only setup placeholder(memory space) and its value set to **undefined** - not the value - the value will be set in the execution phrase if it have.
+    - All the variable and function will be setup a placeholder. **_Entire function will be place in memory include its passed parentheses_**
+    - **_But variable only setup placeholder(memory space)_** and its value set to **undefined** - not the value - the value will be set in the execution phrase if it have.
 
     - **UNDEFINED**
       - is a special value in JS
@@ -134,4 +138,100 @@ Stack: Last in Last out
 
 ---
 
-##
+---
+
+# Chapter2: Types and Operators
+
+---
+
+## Dynamic Typing
+
+We don't declare what type of data that variable holds, it figures out while the code is running - in the execution;
+
+---
+
+## Operators
+
+Under the hood, operators in JS is function that accept two parenthesis - and return a value (someone built JS are writing this for us)
+
+**+,-,\*,/,= is also function under the hood**
+
+It mean:
+
+```
+let a = 2+3;
+<!-- Equal to -->
+function + (2,3){
+  return // under the hood add the two parenthesis
+}
+```
+
+## Operator Precedence (Độ ưu tiên của toán tử)
+
+## Operator Associativity
+
+define what order of the operator function get called: Right to Left - Left to Right
+
+```
+let a=1,b=2,c=4;
+a=b=c;
+/////////////// a=4,b=4,c=4
+// Associativity of this operator is Right-to-Left
+// So first function = (b,c) run first and return 4
+// After that, function = (a,b) run
+```
+
+---
+
+## Coercion
+
+Because **_JavaScript is dynamic type languages_** => it automatically under the hood **_convert/coercion_** to the value that JavaScript think it have to be
+
+**_undefined and null is falsy value but it not equal to 0_**
+
+## Comparison Operators
+
+1. **Compare operators**
+
+```
+console.log(3 < 2 < 1) //return true
+```
+
+```
+console.log(false < 1)
+```
+
+so when run this operators, JS will execute the first function compare (<) and return false
+=> then false will be coerced to 0 because it is falsy value
+=> in the end it will compare 0 < 1 and it is true
+
+2. **Equal operators**
+
+Best Practice: always use triple equal "==="
+
+- With "=="
+  =>>>> **it coerce one value to another type so that the two have the same type to compare - it is not like i think before**
+
+  ```
+  "3" == 3 // true -> it coerce "3" to a number and compare
+  false == 0 //true -> it coerce false to 0 and compare
+  null == 0 // false
+  undefined == 0 // false -> null and undefined not equal to 0
+  null < 1 // true -> but it is 0 in other circumstances
+  "" == 0 // true
+  "" == false // true -> empty string be coerced to 0
+  ```
+
+- With "==="
+  =>>>> **it compare two thing: value and type - and it does not attempt to try to coerce value to another type**
+
+## Existence and Boolean
+
+```
+if(something){
+  ...//
+}
+```
+
+it will coerced **something** to boolean and check if it existence
+=> because all **_undefined, null, "" is represent for lack of existence_** and it return false also
