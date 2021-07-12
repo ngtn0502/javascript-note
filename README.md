@@ -19,7 +19,7 @@ i think i do not understand about JS as i think
 | 3   | [Variable Environment](#variable-environment) |
 | 4   | [Lexical Environment](#lexical-environment)   |
 | 5   | [The Scope Chain](#the-scope-chain)           |
-| 6   | [Execution Context](#execution-context)       |
+| 6   | [Asynchronous](#asynchronous)                 |
 | 6   | [Execution Context](#execution-context)       |
 | 6   | [Execution Context](#execution-context)       |
 
@@ -116,3 +116,22 @@ P/S: when function are called => create execution context in the Stack => execut
 To know how it work, remember about lexically and physically where it sit
 
 <img src="./image/8.PNG" width="400" height="300" > ||| ||| <img src="./image/9.PNG" width="400" height="300" >
+
+---
+
+## Asynchronous
+
+Queue: First in First out
+Stack: Last in Last out
+
+#### This two picture bellow explain how synchronous - single thread language like JavaScript can deal with asynchronous task (like event - fetch API - timer)
+
+<img src="./image/10.PNG" width="900">
+
+---
+
+<img src="./image/11.PNG" width="900">
+
+---
+
+##
