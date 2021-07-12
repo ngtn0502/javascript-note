@@ -1,16 +1,29 @@
-# Javascript: What the f-ck is Javascript
+# What the f-ck is Javascript
 
-## Things worthy to review:
+NhanNguyen
 
-| No. | Questions                                     |
+some little note by myself to remind what i did learn
+
+i think i do not understand about JS as i think
+
+<img src="./image/0.PNG" width="900">
+
+---
+
+## Things worth to review:
+
+| No. | Content                                       |
 | --- | --------------------------------------------- |
 |     |                                               |
 | 1   | [Execution Context](#execution-context)       |
 | 3   | [Variable Environment](#variable-environment) |
-| 4   | [Execution Context](#execution-context)       |
-| 5   | [Execution Context](#execution-context)       |
+| 4   | [Lexical Environment](#lexical-environment)   |
+| 5   | [The Scope Chain](#the-scope-chain)           |
 | 6   | [Execution Context](#execution-context)       |
-| 7   | [Execution Context](#execution-context)       |
+| 6   | [Execution Context](#execution-context)       |
+| 6   | [Execution Context](#execution-context)       |
+
+---
 
 ## Syntax Parser
 
@@ -21,9 +34,14 @@ We write the abstract code that allow human readable => under the hood that some
 
 <img src="./image/compiler.png" width="700">
 
+---
+
 ## Lexical Environment:
 
-it mean talking about where our code is written - where our code is phisically sit and what surrounds it.
+it mean talking about where our code is written - where our code is phisically sit and what surrounds it - where it was born.
+it determine where things live, where things sit in memory, and how they will connect to each other.
+
+---
 
 ## Execution Context:
 
@@ -33,6 +51,9 @@ there are lot of lexical environment. Which one is currently running is managed 
 - When JS file is runing Global execution context will create two thing: (actually JS engine do it)
   1. Global object
   1. "this" keywords
+  1. the reference to the outer environment - (for scoping)
+
+---
 
 ## Execution context: Creation and Hoisting
 
@@ -43,9 +64,11 @@ there are lot of lexical environment. Which one is currently running is managed 
     - All the variable and function will be setup a placeholder. Entire function will be place in memory.
     - But variable only setup placeholder(memory space) and its value set to **undefined** - not the value - the value will be set in the execution phrase if it have.
 
-    1. **UNDEFINED**
-       - is a special value in JS
-       - it mean that the value have take up place in memory but never assign to a value - it is that compiler add more when it run my code in [Syntax Parser](#syntax-parser)
+    - **UNDEFINED**
+      - is a special value in JS
+      - it mean that the value have take up place in memory but never assign to a value - it is that compiler add more when it run my code in [Syntax Parser](#syntax-parser)
+
+---
 
 2.  **Execution Phrase**
 
@@ -60,9 +83,36 @@ there are lot of lexical environment. Which one is currently running is managed 
 
     <img src="./image/executionContext3.PNG" width="400" height="300" >
 
+---
+
 ## Variable Environment
 
 Every time you call a function you create it own **variable environment** in its own **execution context**
 In this picture bellow: each variable are unique - distinct because it create in it its own variable environment in the function execution context
 
 <img src="./image/4.PNG" width="400" height="300" > ||| ||| <img src="./image/5.PNG" width="400" height="300" >
+
+---
+
+## The Scope Chain
+
+Remember when the function are involved it create the execution context put it to the **Stack** and every execution context have its own **variable environment**
+
+When the function create it owns **execution context**=> it also create the reference to the outer environment
+
+When you find variable in the **execution context** => JS look to the **variable environment** to find the variable => if cant found the variable => JS will look to the **referent to outer environment** which create by engine in the **creation phrase** of the **execution context**
+
+- The **outer environment** is determine by **lexical environment** - where the code is actually written - not where the function are involved or where the function are placed in the Stack
+
+=> more details: the outer reference (outer environment) where the function are point to is depend on where the function sits lexically
+
+-The act of the execution context of one function go down one by one outer environment to the bottom of the Stack is call **scope chain**;
+=> Scope mean: where can i access the variable
+
+P/S: when function are called => create execution context in the Stack => execution context will create outer environment for this function => go to find where lexically or physically sit in the code
+
+<img src="./image/6.PNG" width="400" height="300" > ||| ||| <img src="./image/7.PNG" width="400" height="300" >
+
+To know how it work, remember about lexically and physically where it sit
+
+<img src="./image/8.PNG" width="400" height="300" > ||| ||| <img src="./image/9.PNG" width="400" height="300" >
