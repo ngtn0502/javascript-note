@@ -2,15 +2,15 @@
 
 ## Things worthy to review:
 
-| No. | Questions                                |
-| --- | ---------------------------------------- |
-|     | **Core React**                           |
-| 1   | [Execution Context](#execution-context:) |
-| 3   | [Execution Context](#execution-context:) |
-| 4   | [Execution Context](#execution-context:) |
-| 5   | [Execution Context](#execution-context:) |
-| 6   | [Execution Context](#execution-context:) |
-| 7   | [Execution Context](#execution-context:) |
+| No. | Questions                               |
+| --- | --------------------------------------- |
+|     |                                         |
+| 1   | [Execution Context](#execution-context) |
+| 3   | [Execution Context](#execution-context) |
+| 4   | [Execution Context](#execution-context) |
+| 5   | [Execution Context](#execution-context) |
+| 6   | [Execution Context](#execution-context) |
+| 7   | [Execution Context](#execution-context) |
 
 ## Syntax Parser
 
