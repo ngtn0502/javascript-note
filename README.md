@@ -49,9 +49,9 @@ there are lot of lexical environment. Which one is currently running is managed 
     :--------------------------------------------------:|:----------------------------------------------------:
     ![Execution context](./image/executionContext.PNG) | ![Execution context](./image/executionContext2.PNG)
 
-        - Every function when it involve it will **create it own execution context** and JS engine will put this execution context to the Execution Stack (Stack follow "First in last out")
-        - The order lexically doesn't matter - it mean the order that you write your code does not matter - the order in the **Stack** is matter
-        - In this image bellow: although function a is above function b => it normal because in the creation phrase function already take place in memory during global execution context
-        - a() - put a() to the bottom of the stack =>b() - put b() to the top of the stack=>var d => var c => var d
+    - Every function when it involve it will **create it own execution context** and JS engine will put this execution context to the Execution Stack (Stack follow "First in last out")
+    - The order lexically doesn't matter - it mean the order that you write your code does not matter - the order in the **Stack** is matter
+    - In this image bellow: although function a is above function b => it normal because in the creation phrase function already take place in memory during global execution context
+    - a() - put a() to the bottom of the stack =>b() - put b() to the top of the stack=>var d => var c => var d
 
-          ![Execution context](./image/executionContext3.PNG)
+    ![Execution context](./image/executionContext3.PNG)
