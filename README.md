@@ -12,20 +12,20 @@ i think i do not understand about JS as i think
 
 ## Things worth to review:
 
-| No. | Content                                         |
-| --- | ----------------------------------------------- |
-|     |                                                 |
-| 1   | [Execution Context](#execution-context)         |
-| 3   | [Variable Environment](#variable-environment)   |
-| 4   | [Lexical Environment](#lexical-environment)     |
-| 5   | [The Scope Chain](#the-scope-chain)             |
-| 6   | [Asynchronous](#asynchronous)                   |
-| 6   | [Operators](#operators)                         |
-| 6   | [Comparison Operators](#comparison-operators)   |
-| 6   | [Existence and Boolean](#existence-and-boolean) |
-| 6   | [Coercion](#coercion)                           |
-| 6   | [Coercion](#coercion)                           |
-| 6   | [Coercion](#coercion)                           |
+| No. | Content                                                        |
+| --- | -------------------------------------------------------------- |
+|     |                                                                |
+| 1   | [Execution Context](#execution-context)                        |
+|     | [Variable Environment](#variable-environment)                  |
+|     | [Lexical Environment](#lexical-environment)                    |
+|     | [The Scope Chain](#the-scope-chain)                            |
+|     | [Asynchronous](#asynchronous)                                  |
+| 2   | [Operators](#operators)                                        |
+|     | [Comparison Operators](#comparison-operators)                  |
+|     | [Existence and Boolean](#existence-and-boolean)                |
+| 3   | [Chapter3: Object and Function](#chapter3-object-and-function) |
+|     | [Object and the dot](#object-and-the-dot)                      |
+|     | [Coercion](#coercion)                                          |
 
 ---
 
@@ -235,3 +235,61 @@ if(something){
 
 it will coerced **something** to boolean and check if it existence
 => because all **_undefined, null, "" is represent for lack of existence_** and it return false also
+
+---
+
+---
+
+# Chapter3: Object and Function
+
+Every object have sort of address where it live in our computer memory
+And it have **_references to the address or value of different properties and methods that are also sit in our computer memory._**
+
+---
+
+## Object and the dot
+
+To access to member of an Object using "[] or ."
+**Both of them is a operator**
+
+<img src="./image/14.PNG" width="400" height="90" >
+
+1. Dot access:
+   - It will automatically convert what you pass in after **dot operator** into a string
+2. Square bracket:
+   - It normally is a "operator function" that take one parameter
+
+```
+person = new Object();
+person.address.street = "some string";
+// Dot operator the accsessibility left-to-right
+```
+
+the first dot operator will run -> it will look to person object and look to the address property that reference in the computer memory -> after the first dot run, it will return an sub object -> look to the "street" property in that object like so.
+
+---
+
+## JSON and Object literal
+
+JSON is use for replace XML to transport data through internet
+JSON have syntax look like Object literal but every property is in the ""
+
+JSON is technically is a _subset_ of Object literal syntax
+=> every thing valid in **JSON** is also valid in **Object literal**
+
+```
+JSON.stringify(objectLiteral) //Convert object to string for JSON file
+JSON.parse(jsonString) //Convert string of JSON to object literal for JS
+```
+
+---
+
+## First Class Function
+
+Everything we can do with others types we can do with function
+
+Because function are special type of Object so that we cant attach property and method to function
+
+**Function are object and the code that we written is just put into one of the property of this function object and it also invocable()**
+
+<img src="./image/15.PNG" width="400" height="300" > ||| ||| <img src="./image/16.PNG" width="400" height="300" >
