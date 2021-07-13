@@ -10,4 +10,3 @@ function a() {
 let myLet = 1;
 a();
 
-

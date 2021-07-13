@@ -26,9 +26,11 @@ i do not understand about JS as i though
 | 3   | [Chapter3: Object and Function](#chapter3-object-and-function)                       |
 |     | [Object and the dot](#object-and-the-dot)                                            |
 |     | [Expression, Statement and Function](#expression-statement-and-function) - DIFFICULT |
-|     | [First Class Function](#first-class-function) - DIFFICULT                            |
-|     | [This Key Word](#this-key-word)                                                      |
-|     | [Closure](#closure) - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT      |
+| 4   | [First Class Function](#first-class-function) - DIFFICULT                            |
+| 5   | [This Key Word](#this-key-word)                                                      |
+| 6   | [Closure](#closure) - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT      |
+|     | [Call()-Apply()-Bind()](#call-apply-bind)                                            |
+| 7   | [Functional Programing](#functional-programing)                                      |
 
 ---
 
@@ -455,6 +457,8 @@ pass the **_function expression_** into the **_() operator_** to trick the synta
 
 ## Closure
 
+`free variable` is the variable outside the function but you still have the access to
+
 the return of the function object (in the execution context) is different with where the function live in memory (in the creation phrase)
 
 it mainly about the idea of **_Function return a function_**
@@ -475,7 +479,7 @@ Because function are `first-class citizen` so that it can return as a normal val
 > => and when it happen we say the execution context of the return function has closed in its outer variable
 > => in other words, it still have reference to that variable even their execution context are gone
 
-GOOD QUESTION: https://www.udemy.com/course/understand-javascript/learn/lecture/2237544#questions/653912
+GOOD QUESTION: [Understanding Closures](https://www.udemy.com/course/understand-javascript/learn/lecture/2237544#questions/653912)
 
 <img src="./image/23.PNG" width="600" height="300" >
 
@@ -488,3 +492,99 @@ SO WHAT IS `CLOSURE` MEAN:
 **_WHY THE CALLBACK FUNCTION DON NOT RUN RIGHT AWAY_**
 
 > It because the function expression return function object and store all the code inside that function in to its "code property" util facing the () operator, it will be involved and also create its own execution context, variable environment.
+
+---
+
+<img src="./image/24.PNG" width="600" height="300" >
+
+IF CAN BE ABLE TO FIGURE OUT - WATCH THE VIDEO AGAIN: [Understanding Closures](https://www.udemy.com/course/understand-javascript/learn/lecture/2562690#questions/653912)
+
+<img src="./image/25.PNG" width="600" height="300" >
+
+## Let/Const and Closure
+
+`Let/Const` is scoped to the block, so that they are called block scope variable
+
+---
+
+## Call()-Apply()-Bind()
+
+function are `object` so that they can have `property and method`
+
+- Call() method
+- Bind() method
+- Apply() method
+
+1. **_bind()_** - **_CREATE A COPY OF THAT FUNCTION_**
+
+this keyword of function object that involved bind(pointTo) will point to whatever we pass to bind method (in this case will pointTo)
+
+```
+let logName = function(){
+  //some code
+}
+```
+
+we can use bind() through 2 way:
+
+```
+logName.bind()
+  ---
+let logName = function(){
+  //some code
+}.bind()
+```
+
+because i want call bind method in the function object, not call bind() for the return value of that function
+
+---
+
+**_Apply of bind: function currying: Create a copy of a function but with some preset parameters_**
+
+```
+function multiple(a,b){
+  return a*b
+}
+
+let multipleTwoNumber = multiple.bind(this, 2)
+
+// This will permanently set the value of first parameter is 2
+```
+
+---
+
+2. **_call()_** - decide what the this keyword of the function is **BUT IT CALL FUNCTION IMMEDIATELY**
+
+> Apply of Call: function borrowing: call method on another function in other function
+
+=> it have same meaning with `inheritance` of `OOP` in `Class`
+
+```
+const person1 ={
+  name: "Van A",
+  greeting: function (){
+    console.log("hello " + this.name)
+  }
+}
+
+const person2={
+  name: "Van B"
+}
+
+person1.greeting.call(person2) //with return "hello Van B"
+
+```
+
+---
+
+# Functional Programing
+
+In other languages their function is not first-class citizen. There is a limitation to how much we can put into function. Limit how can you divide/segment code
+
+JavaScript is a `first-class function` so that allow **us think and code in terms of functions.** It mean allow us to divide/segment my code to reuseable.
+
+To segment our code in even cleaner and tighter ways. And this lets us build really clean and in some ways beautiful looking code.
+
+It just about give our function a function and return from our function a function in purpose simplify our code over and over again
+
+<img src="./image/26.PNG" width="600" >
