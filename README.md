@@ -4,7 +4,7 @@ NhanNguyen
 
 some little note by myself to remind what i did learn
 
-i think i do not understand about JS as i think
+i do not understand about JS as i though
 
 <img src="./image/0.PNG" width="900">
 
@@ -12,20 +12,23 @@ i think i do not understand about JS as i think
 
 ## Things worth to review:
 
-| No. | Content                                                        |
-| --- | -------------------------------------------------------------- |
-|     |                                                                |
-| 1   | [Execution Context](#execution-context)                        |
-|     | [Variable Environment](#variable-environment)                  |
-|     | [Lexical Environment](#lexical-environment)                    |
-|     | [The Scope Chain](#the-scope-chain)                            |
-|     | [Asynchronous](#asynchronous)                                  |
-| 2   | [Operators](#operators)                                        |
-|     | [Comparison Operators](#comparison-operators)                  |
-|     | [Existence and Boolean](#existence-and-boolean)                |
-| 3   | [Chapter3: Object and Function](#chapter3-object-and-function) |
-|     | [Object and the dot](#object-and-the-dot)                      |
-|     | [Coercion](#coercion)                                          |
+| No. | Content                                                                              |
+| --- | ------------------------------------------------------------------------------------ |
+|     |                                                                                      |
+| 1   | [Execution Context](#execution-context) - DIFFICULT                                  |
+|     | [Variable Environment](#variable-environment)                                        |
+|     | [Lexical Environment](#lexical-environment)                                          |
+|     | [The Scope Chain](#the-scope-chain)                                                  |
+|     | [Asynchronous](#asynchronous) - DIFFICULT                                            |
+| 2   | [Operators](#operators) - DIFFICULT                                                  |
+|     | [Comparison Operators](#comparison-operators)                                        |
+|     | [Existence and Boolean](#existence-and-boolean)                                      |
+| 3   | [Chapter3: Object and Function](#chapter3-object-and-function)                       |
+|     | [Object and the dot](#object-and-the-dot)                                            |
+|     | [Expression, Statement and Function](#expression-statement-and-function) - DIFFICULT |
+|     | [First Class Function](#first-class-function) - DIFFICULT                            |
+|     | [This Key Word](#this-key-word)                                                      |
+|     | [Closure](#closure) - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT      |
 
 ---
 
@@ -293,3 +296,195 @@ Because function are special type of Object so that we cant attach property and 
 **Function are object and the code that we written is just put into one of the property of this function object and it also invocable()**
 
 <img src="./image/15.PNG" width="400" height="300" > ||| ||| <img src="./image/16.PNG" width="400" height="300" >
+
+---
+
+Because function are object so that we can create property for that object
+
+<img src="./image/17.PNG" width="400" height="300" > ||| ||| <img src="./image/18.PNG" width="400" height="300" >
+
+---
+
+## Expression, Statement and Function
+
+**_Expression:_** the units of code that return a value and it does not have to store into some thing.
+
+1. **Expression function**
+
+   ```
+   let anonymousGreet = function (){
+     //some code
+   }
+   ```
+
+   The example above is the function(){} is an expression that return a value and we assign it to the variable.
+
+   > More detail: in the creation phrase of execution context - the variable will take placeholder with undefined value in the memory. When JS reach the line of assign this variable to function object -> the variable are assign to function object and after that we can involved this variable through ()
+   > **_this why function expression cant hoist_**
+
+2. **Declaration function**
+
+   ```
+   function Greet (){
+     // some code
+   }
+   ```
+
+   Statement: the code that does not return any value
+
+3. **First class function**
+
+We can pass function expression as a parameter to another function because function are just only object in JS, and we can pass it around
+
+<img src="./image/19.PNG" width="400" height="300" >
+
+So that does the code above do
+
+> function expression will create when the log() function run, and that anonymous function expression assign its value to the "a" variable so that you can involved the "a" variable by using () - involved operator
+
+## By Value and By Reference
+
+1. **By Value**
+
+Primitive type will set with difference new address in the memory and with the copy of the value
+
+<img src="./image/20.PNG" width="600" height="300" >
+
+2. **By Reference**
+
+When we assign a object b to a, it does not create a new object in the memory, the two variable just point to the same place in the HEAP.
+
+It can easily mean that with the same object - it have two name, and one name is alias
+
+<img src="./image/21.PNG" width="600" height="300" >
+
+what happen in the snippet bellow:
+
+```
+c = { greeting: "hello"}
+b=c
+```
+
+the equal operator will create the new spot in the memory for the object {greeting: "hello"}
+b will point to the object that c is point to in the memory this is call reference
+
+---
+
+## This key word
+
+**_this key word_** in the normal function declaration will point to window object
+
+```
+function a(){
+  console.log(this)
+}
+a()
+```
+
+**_this key word_** in this example will point to the global variable - the window
+
+```
+const c = {
+  name: "Nhan",
+  log: function (){
+    console.log(this)
+  }
+}
+c.log()
+// this code will return object c
+```
+
+**_this key word_** inside the method in the object will point to the object that contain the method
+
+## Argument, Parameter and Spread
+
+in the Creation context JS engine will also create the "arguments" **_array_** for us to use
+
+```
+function greet(firstname, lastname){
+  console.log(argument)
+}
+greet("Nhan", "Nguyen");
+// return ["Nhan", "Nguyen"]
+```
+
+---
+
+```
+function greet(firstname){
+  console.log(firstname)
+}
+greet();
+// return undefined
+```
+
+this return undefined because when the function greet be called - **_the creation phrase_** take up place in the memory for that function and **_parameter of that function_** will be take up a **_placeholder_** in the memory with the value of **_undefined_**
+
+## Immediately Involved Function Expression
+
+Should watch the video in JS: Understanding the weird part again
+
+```
+const greeting = function(name){
+  return "Hello" + name
+}("Nhan")
+
+console.log(greeting)
+// return Hello Nhan
+// console.log(greeting()) -> does not work because greeting is not a function
+```
+
+In the right hand of equal operator: because of the IIFE the anonymous function expression be involved immediately with the global variable and return a value as a string;
+
+Then, equal operator assign "greeting variable" for this string.
+After that the console.log receive the string - not the function
+
+---
+
+How to create a function and involved it at the same time
+
+```
+(function(parameter){
+  /some code
+}())
+```
+
+pass the **_function expression_** into the **_() operator_** to trick the syntax parser about this is the **_function expression not function statement_**. And use () to call it immediately => it called IIFE
+
+---
+
+## Closure
+
+the return of the function object (in the execution context) is different with where the function live in memory (in the creation phrase)
+
+it mainly about the idea of **_Function return a function_**
+
+Because function are `first-class citizen` so that it can return as a normal value
+
+**Garbage collection**: the act of clearing all the variable is set up in the memory space when the execution context in the stack gone
+
+> When its code is invoked, and JavaScript engine sees the whattosay variable, what does the JavaScript engine do?
+
+> Well it goes up the scope chain.
+> It find outer lexical environment reference, since it couldn't find it inside the function itself.
+
+> And even though the execution context of that function greet is gone - was popped off the stack
+> The sayHi execution context still has a reference to the variables, to the memory space of its outer environment.
+> In other words, even though the greet function ended, it finished, any functions created inside of it when they are called will still have a reference to that greet function's memory - to what was in its memory, its execution context memory space.
+
+> => and when it happen we say the execution context of the return function has closed in its outer variable
+> => in other words, it still have reference to that variable even their execution context are gone
+
+GOOD QUESTION: https://www.udemy.com/course/understand-javascript/learn/lecture/2237544#questions/653912
+
+<img src="./image/23.PNG" width="600" height="300" >
+
+SO WHAT IS `CLOSURE` MEAN:
+
+> Closure mean that the callback function have access to the outer variable environment even the higher-order-function are popped off the stack (gone - end).
+
+> The JavaScript engine will always make sure that whatever function I'm running, that it will have access to the variables that it's supposed to have access to. its scope is intact.
+
+**_WHY THE CALLBACK FUNCTION DON NOT RUN RIGHT AWAY_**
+
+> It because the function expression return function object and store all the code inside that function in to its "code property" util facing the () operator, it will be involved and also create its own execution context, variable environment.
