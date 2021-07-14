@@ -12,30 +12,32 @@ i do not understand about JS as i though
 
 ## Things worth to review:
 
-| No. | Content                                                                              |
-| --- | ------------------------------------------------------------------------------------ |
-|     |                                                                                      |
-| 1   | [Execution Context](#execution-context) - DIFFICULT                                  |
-|     | [Variable Environment](#variable-environment)                                        |
-|     | [Lexical Environment](#lexical-environment)                                          |
-|     | [The Scope Chain](#the-scope-chain)                                                  |
-|     | [Asynchronous](#asynchronous) - DIFFICULT                                            |
-| 2   | [Operators](#operators) - DIFFICULT                                                  |
-|     | [Comparison Operators](#comparison-operators)                                        |
-|     | [Existence and Boolean](#existence-and-boolean)                                      |
-| 3   | [Chapter3: Object and Function](#chapter3-object-and-function)                       |
-|     | [Object and the dot](#object-and-the-dot)                                            |
-|     | [Expression, Statement and Function](#expression-statement-and-function) - DIFFICULT |
-| 4   | [First Class Function](#first-class-function) - DIFFICULT                            |
-| 5   | [This Key Word](#this-key-word)                                                      |
-| 6   | [Closure](#closure) - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT      |
-|     | [Call()-Apply()-Bind()](#call-apply-bind)                                            |
-| 7   | [Functional Programing](#functional-programing)                                      |
-| 8   | [OOP and Prototypal Inheritance](#oop-and-prototypal-inheritance)                    |
-|     | [Inheritance in JavaScript](#inheritance-in-javascript)                              |
-|     | [Prototype](#prototype)                                                              |
-|     | [Everything is an Object (or a primitive)](#everything-is-an-object-or-a-primitive)  |
-| 9   | [New Keyword and Class](#new-keyword-&-class)                                        |
+| No. | Content                                                                                     |
+| --- | ------------------------------------------------------------------------------------------- |
+|     |                                                                                             |
+| 1   | [Execution Context](#execution-context) - DIFFICULT                                         |
+|     | [Variable Environment](#variable-environment)                                               |
+|     | [Lexical Environment](#lexical-environment)                                                 |
+|     | [The Scope Chain](#the-scope-chain)                                                         |
+|     | [Asynchronous](#asynchronous) - DIFFICULT                                                   |
+| 2   | [Operators](#operators) - DIFFICULT                                                         |
+|     | [Comparison Operators](#comparison-operators)                                               |
+|     | [Existence and Boolean](#existence-and-boolean)                                             |
+| 3   | [Chapter3: Object and Function](#chapter3-object-and-function)                              |
+|     | [Object and the dot](#object-and-the-dot)                                                   |
+|     | [Expression, Statement and Function](#expression-statement-and-function) - DIFFICULT        |
+| 4   | [First Class Function](#first-class-function) - DIFFICULT                                   |
+| 5   | [This Key Word](#this-key-word)                                                             |
+| 6   | [Closure](#closure) - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT             |
+|     | [Call()-Apply()-Bind()](#call-apply-bind)                                                   |
+| 7   | [Functional Programing](#functional-programing)                                             |
+| 8   | [OOP and Prototypal Inheritance](#oop-and-prototypal-inheritance)                           |
+|     | [Inheritance in JavaScript](#inheritance-in-javascript)                                     |
+|     | [Prototype](#prototype)                                                                     |
+|     | [Everything is an Object (or a primitive)](#everything-is-an-object-or-a-primitive)         |
+| 9   | [New Keyword and Class](#new-keyword-&-class)                                               |
+| 10  | [Asynchronous](#promise) - nice to check again                                              |
+|     | [Consume Promise With Async/Await](#consume-promise-with-async-await) - nice to check again |
 
 ---
 
@@ -628,6 +630,15 @@ In case of function, they also have same `proto` of `base object function`-> and
 
 <img src="./image/29.PNG" width="400" height="300" > ||| ||| <img src="./image/30.PNG" width="400" height="200" >
 
+```
+const arr = [1,2,3,4,5,6]
+arr.__proto__ === Array.prototype // true
+```
+
+**_=>_** `[] operators` equal to `new Array`
+
+**_NOTE:_** All the array built-in method we use live in `Array.prototype`. And we can use it because the mechanism of prototype chain and prototype inheritance
+
 ---
 
 ---
@@ -641,6 +652,12 @@ JavaScript does not have real `class` as other different languages have, in ES6 
 `Class` as a blueprint to build a `new` house object
 
 **_IMPORTANT:_** `class` is an object in `JavaScript`
+
+**_CLASS_**: is just a syntactic sugar of function constructor
+
+**_Constructor_** method in `Class` is similar to function constructor.
+
+**_Important:_** All the function automatically have a property called `prototype`. And that include constructor function. Every object create by certain `constructor function`, have access to all property and method we define in `constructor prototype property` (constructor function)
 
 ```
 class  Person{
@@ -660,5 +677,94 @@ const NhanNguyen = new Person ("Nhan","Nguyen")
 this snippet above will:
 
 1. create new instance empty object
-2. point `this` to that new `instance object`
-3. after automatically run the `constructor function`, it return `instance empty object`
+2. point `this` key word of the `constructor` to that new `instance empty object`
+3. `instance empty object` linked to prototype of the `constructor function` that being called
+4. after automatically run the `constructor function`, it return `instance empty object`
+
+**_Important_**: all the method we add to the `Class` outside the `constructor function` will added to the `prototype property` of that `class`.
+=> and when we create new Object with `new` keyword it will link the `prototype property` of that `class` to the `prototype` of the new Object (created by that `class`)
+
+We also can add prototype manually to the `class` by this:
+
+```
+Person.prototype.sayHi = function(){
+  console.log("Hi" + this.name)
+}
+```
+
+<img src="./image/31.PNG"  >
+
+---
+
+<img src="./image/32.PNG"  >
+
+---
+
+---
+
+# Asynchronous
+
+Settimeout, load image, fetch data is asynchronous
+
+# Promise
+
+`Promise`: an object is used to as a placeholder for the future result of an asynchronous operations(like the response for AJAX call)
+
+`Promise`: will prevent us from callback hell of AJAX CALL
+
+<img src="./image/33.PNG"  >
+
+We will going to use `fetch` function - and it return an `promise`
+
+The callback function we pass in `.then` will be executed after the `promise` are fulfilled (as soon as result is available). And that `callback function` receive an `argument` is the resulting value of the fulfilled `promise`.
+
+Usually the result of the AJAX call of `fetch` function will return the `response` in `JSON` format
+
+To convert it to normal Object that JS can read, we convert by method `.json()`. It is the method that available in all response object that is coming from the `fetch` function.
+
+**NOTE**: the `json` function itself is an asynchronous function, it actually return a new promise
+
+```
+const getDataFromAPI=function(apiUrl){
+ const data = fetch(apiUrl).then(function(response){
+      return response.json();
+  }).then(function(data){
+      return data // return data from fetch function - from promise chain
+  })
+  return data // return data from the data value
+}
+// That data is what we need
+```
+
+---
+
+in ES 2017, there is an even better and easier way to consume `promise`. It provide us more "synchronous look" for the code
+
+---
+
+## Consume Promise With Async Await
+
+We use special kind of function - a function that keep running in the background when perform the code inside of it
+
+```
+const fetchData = async function (url){
+  const response = await fetch(url)
+  const data =  await response.json();
+}
+```
+
+`Await` will be stop decode until the `Fetch` function fulfill and return an promise - this `async function happen in the background` so `stop decode` does not affect the main `threat` of `JavaScrip` - so it not blocking the callstack.
+
+`Response` variable will the result of the `promise fetch` when it fulfill
+
+Because `json()` method return a `promise`, so we need `await` it, await an promise will return the response of that promise, so we store the `response` in `Data` variable.
+
+=> It is just the syntactic sugar for then method in promise
+
+## APIs
+
+`APIs` is Application run in the sever that `receive` data, and `sends` data back as response - it simply the communication to browser and sever
+
+`APIs` just `JSON` data format - to send data across the web
+
+<img src="./image/34.PNG"  >
