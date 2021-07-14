@@ -31,6 +31,11 @@ i do not understand about JS as i though
 | 6   | [Closure](#closure) - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT - DIFFICULT      |
 |     | [Call()-Apply()-Bind()](#call-apply-bind)                                            |
 | 7   | [Functional Programing](#functional-programing)                                      |
+| 8   | [OOP and Prototypal Inheritance](#oop-and-prototypal-inheritance)                    |
+|     | [Inheritance in JavaScript](#inheritance-in-javascript)                              |
+|     | [Prototype](#prototype)                                                              |
+|     | [Everything is an Object (or a primitive)](#everything-is-an-object-or-a-primitive)  |
+| 9   | [New Keyword and Class](#new-keyword-&-class)                                        |
 
 ---
 
@@ -588,3 +593,72 @@ To segment our code in even cleaner and tighter ways. And this lets us build rea
 It just about give our function a function and return from our function a function in purpose simplify our code over and over again
 
 <img src="./image/26.PNG" width="600" >
+
+---
+
+---
+
+# OOP and Prototypal Inheritance
+
+## Inheritance in JavaScript
+
+<img src="./image/27.PNG" width="600" >
+
+- **_Classical Inheritance_** is the way others languages (C#, Jave) use to perform inheritance.
+
+- **_Prototypal Inheritance_** is the way `JAVASCRIPT` perform inheritance => much easier and extenable
+
+## Prototype
+
+Every object all have the method call `proto` - and obj have access to this `proto`, this `proto` is also a object, and it have access to another `proto`.
+
+More different object can you the same `proto` in the prototype chain.
+
+---
+
+If there can not find some thing like `property` in `original obj` it self -> it will go down to the `prototype chain` and find this object in the `proto obj`
+
+<img src="./image/28.PNG" width="600" >
+
+## Everything is an Object (or a primitive)
+
+Every object have the `proto` of `base object` and this is why object can have built in method like `map` for us to use.
+
+In case of function, they also have same `proto` of `base object function`-> and it is why we can use built-in method like call, bind, apply.
+
+<img src="./image/29.PNG" width="400" height="300" > ||| ||| <img src="./image/30.PNG" width="400" height="200" >
+
+---
+
+---
+
+## New Keyword & Class
+
+when we use `new` operator, JS will create `empty object` and point this keyword of the object after `new` keyword for this `empty object` and return this empty object
+
+JavaScript does not have real `class` as other different languages have, in ES6 `class` is an object, in other languages `class` is a template - a definition
+
+`Class` as a blueprint to build a `new` house object
+
+**_IMPORTANT:_** `class` is an object in `JavaScript`
+
+```
+class  Person{
+  constructor(firstName,lastName){
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  greet(){
+    return "Hi" + firstName;
+  }
+}
+
+const NhanNguyen = new Person ("Nhan","Nguyen")
+```
+
+this snippet above will:
+
+1. create new instance empty object
+2. point `this` to that new `instance object`
+3. after automatically run the `constructor function`, it return `instance empty object`
