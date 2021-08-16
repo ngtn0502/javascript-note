@@ -1,4 +1,4 @@
-# What the f-ck is Javascript
+# JS - the weird part
 
 NhanNguyen
 
@@ -92,7 +92,7 @@ there are lot of lexical environment. Which one is currently running is managed 
 
     <!-- ![Execution context](./image/executionContext.PNG) | ![Execution context](./image/executionContext2.PNG) -->
 
-    - Every function when it involve it will **create it own execution context** and JS engine will put this execution context to the Execution Stack (Stack follow "First in last out")
+    - Every function when it involve it will **create it own execution context** and JS engine will put this execution context to the Execution Stack (Stack follow "Last in first out")
     - The order lexically doesn't matter - it mean the order that you write your code does not matter - the order in the **Stack** is matter
     - In this image bellow: although function a is above function b => it normal because in the creation phrase function already take place in memory during global execution context
     - a() - put a() to the bottom of the stack =>b() - put b() to the top of the stack=>var d => var c => var d
@@ -474,12 +474,12 @@ Because function are `first-class citizen` so that it can return as a normal val
 
 **Garbage collection**: the act of clearing all the variable is set up in the memory space when the execution context in the stack gone
 
-> When its code is invoked, and JavaScript engine sees the whattosay variable, what does the JavaScript engine do?
+> When its code is invoked, and JavaScript engine sees the "whattosay" variable, what does the JavaScript engine do?
 
 > Well it goes up the scope chain.
 > It find outer lexical environment reference, since it couldn't find it inside the function itself.
 
-> And even though the execution context of that function greet is gone - was popped off the stack
+> And even though the execution context of that function "greet" is gone - was popped off the stack
 > The sayHi execution context still has a reference to the variables, to the memory space of its outer environment.
 > In other words, even though the greet function ended, it finished, any functions created inside of it when they are called will still have a reference to that greet function's memory - to what was in its memory, its execution context memory space.
 
@@ -753,7 +753,7 @@ const fetchData = async function (url){
 }
 ```
 
-`Await` will be stop decode until the `Fetch` function fulfill and return an promise - this `async function happen in the background` so `stop decode` does not affect the main `threat` of `JavaScrip` - so it not blocking the callstack.
+`Await` will be stop decode until the `Fetch` function fulfill and return an promise - this `async function happen in the background` so `stop decode` does not affect the main `thread` of `JavaScrip` - so it not blocking the callstack.
 
 `Response` variable will the result of the `promise fetch` when it fulfill
 
